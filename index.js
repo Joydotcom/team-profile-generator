@@ -1,10 +1,27 @@
-const Manager = require 
-const Engineer
-const Intern
-const inquirer 
-const path
-const fs
+const Manager = require ("./lib/Manager");
+const Engineer = require ("./lib/Engineer");
+const Intern = require ("./lib/Intern");
+const inquirer = require ("inquirer");
+const path = require ("path");
+const fs = require ("fs");
 
+
+
+
+function appMenu() {
+
+function createManager () {
+    console.log ("Please build your team");
+    inquirer.prompt( [
+        {
+            type: "input",
+            name: "managerName",
+            message: "What is the team manager's name?",
+        }
+    ])
+}
+
+}
 // THIS IS WHERE YOUR MAIN LOGIC WILL LIE
 
 // You would first require ALL of the files and node packages needed
