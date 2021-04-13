@@ -5,8 +5,10 @@ const inquirer = require ("inquirer");
 const path = require ("path");
 const fs = require ("fs");
 
+const OUTPUT_DIR = path.resolve(__dirname, "dist")
+const outputPath = path.join(OUTPUT_DIR, "team.html");
 
-
+module.exports = pageContent;
 
 function appMenu() {
 
@@ -16,12 +18,51 @@ function createManager () {
         {
             type: "input",
             name: "managerName",
+            message: "What is the name of the employee??",
+        },
+        {
+            type: "input",
+            name: "username",
+            message: "What is the GitHub username for this Employee?",
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "What is their email address?",
+        },
+        {
+            type: "input",
+            name: "ID",
+            message: "What is their employee ID?",
+        },
+        {
+            type: "input",
+            name: " ",
             message: "What is the team manager's name?",
-        }
+        },
+        {
+            type: "input",
+            name: "managerName",
+            message: "What is the team manager's name?",
+        },
     ])
 }
 
 }
+
+
+
+function runApp() {
+  ...Inquirer prompt and the functions that will ask users about manager, intern, and engineer.
+  function buildTeam() {
+    // Create the output directory if the output path doesn't exist
+    if (!fs.existsSync(OUTPUT_DIR)) {
+      fs.mkdirSync(OUTPUT_DIR)
+    }
+    fs.writeFileSync(outputPath, render(teamMembers), "utf-8");
+  }
+}
+runApp();
 // THIS IS WHERE YOUR MAIN LOGIC WILL LIE
 
 // You would first require ALL of the files and node packages needed
