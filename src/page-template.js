@@ -5,13 +5,18 @@ const generateTeam = team => {
     // A method for a template to render engineer info
 
     // A method for a template to render intern info
-const  generateManager = manager = {
-    return `${manager.getName()} etc etc`
+const  generateManager = (manager) => {
+    return ``;
 }
+
 const html = [];
     html.push(team
         .filter(employee => employee.getRole() === "Manager")
         .map(manager => generateManager(manager))
+    );
+    html.push(team
+        .filter(employee => employee.getRole() === "Engineer")
+        .map(engineer => generateEngineer(engineer))
     );
     return html.join("");
 }
