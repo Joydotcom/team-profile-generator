@@ -3,15 +3,15 @@ const Manager = require("./lib/Manager");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
-// const { throwStatement, assertEnumDefaultedMember, tSIntrinsicKeyword } = require("@babel/types");
+
 const path = require("path");
 const fs = require("fs");
 const render = require("./src/page-template.js");
-// const { nextTick } = require("process");
+
 const OUTPUT_DIR = path.resolve(__dirname, "dist");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 const teamMembers = [];
-// module.exports = pageContent;
+
 
 function runApp() {
   buildMemberQuestions();
@@ -161,7 +161,7 @@ function runApp() {
   }
 };
 function buildTeam() {
-  // Create the output directory if the output path doesn't exist
+
   if (!fs.existsSync(OUTPUT_DIR)) {
     fs.mkdirSync(OUTPUT_DIR);
   }
