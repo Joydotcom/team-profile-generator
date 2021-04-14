@@ -14,25 +14,26 @@ const teamMembers = [];
 // module.exports = pageContent;
 
 function runApp() {
-  function addMemberQuestions() {
+  buildMemberQuestions();
+  function buildMemberQuestions() {
     inquirer
       .prompt([
         {
           type: "list",
-          name: "add",
+          name: "build",
           message: "Which type of team member would you like to add?",
           choices: ["Manager", "Engineer", "Intern", "Finish building my team"],
         },
       ])
       .then((data) => {
-        if (data.add === "Manager") {
-          managerQuestions();
+        if (data.build === "Manager") {
+          buildManager();
         }
-        if (data.add === "Engineer") {
-          engineerQuestions();
+        if (data.build === "Engineer") {
+          buildEngineer();
         }
-        if (data.add === "Intern") {
-          internQuestions();
+        if (data.build === "Intern") {
+          buildIntern();
         }
         if (data.add === "Finish building my team") {
           buildTeam();
@@ -40,13 +41,13 @@ function runApp() {
       });
   }
 
-  function managerQuestions() {
+  function buildManager() {
     inquirer
       .prompt([
         {
           type: "input",
           name: "managerName",
-          message: "What is the name of the employee??",
+          message: "What is the Manager's name?",
         },
         {
           type: "input",
@@ -59,7 +60,7 @@ function runApp() {
           message: "What is the manager's email?",
         },
         {
-          type: "input",
+          type: "number",
           name: "managerOfficeNumber",
           message: "What is the manager's office number?",
         },
@@ -76,16 +77,16 @@ function runApp() {
         teamMembers.push(manager);
         console.log(manager);
         buildTeam();
-        addMemberQuestion();
+        buildMemberQuestions();
       });
   }
-  function engineerQuestions() {
+  function buildEngineer() {
     inquirer
       .prompt([
         {
           type: "input",
           name: "engineerName",
-          message: "What is the name of the engineer?",
+          message: "What is the Engineer's name?",
         },
         {
           type: "input",
@@ -112,9 +113,49 @@ function runApp() {
           answers.engineerEmail,
           answers.gitHubUsername
         );
-        teamMembers.push(Engineer);
+        teamMembers.push(engineer);
         console.log(engineer);
-        addMemberQuestion();
+        buildMemberQuestions();
+        buildTeam();
+      });
+  }
+
+  function buildIntern() {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "internName",
+          message: "What is the Intern's name?",
+        },
+        {
+          type: "input",
+          name: "internId",
+          message: "What is the Intern's employee ID?",
+        },
+        {
+          type: "input",
+          name: "internEmail",
+          message: "What is the Intern's email?",
+        },
+        {
+          type: "input",
+          name: "school",
+          message: "What school does/did the Intern attend?",
+        },
+      ])
+
+      .then((answers) => {
+        console.log(answers);
+        const intern = new Intern(
+          answers.internName,
+          answers.internId,
+          answers.internEmail,
+          answers.internUsername
+        );
+        teamMembers.push(intern);
+        console.log(intern);
+        buildMemberQuestions();
         buildTeam();
       });
   }

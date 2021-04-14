@@ -1,24 +1,21 @@
-//const { expect, it } = require("@jest/globals");
-const Intern = require("../lib/Engineer");
 
-// I start constructing my tests
+const Intern = require("../lib/Intern");
+
 describe("Tests to see if Intern class exists", () => {
   it(" should be an object", () => {
-    // ARRANGE
-    // I don't really have something to compare to
-    //ACT
-    const internObject = new Engineer(
+  
+    const internObject = new Intern(
       "name",
       "id",
       "email",
-      "gitHubUsername"
+      "school"
     );
-    //ASSERT
-    expect(typeof engineerObject).toBe("object");
+ 
+    expect(typeof internObject).toBe("object");
 
-    expect(engineerObject.getRole()).toBe("Engineer");
+    expect(internObject.getRole()).toBe("Intern");
 
-    expect(engineerObject.getGitHubUsername()).toBe("gitHubUsername");
+    expect(internObject.getSchool()).toBe("school");
   });
 
 });
