@@ -52,20 +52,20 @@ const  generateIntern = (intern) => {
 }
 
 
-const htmlIndex = [];
-    htmlIndex.push(team
+const html = [];
+    html.push(team
         .filter(employee => employee.getRole() === "Manager")
         .map(manager => generateManager(manager))
     );
-    htmlIndex.push(team
+    html.push(team
         .filter(employee => employee.getRole() === "Engineer")
         .map(engineer => generateEngineer(engineer))
     );
-    htmlIndex.push(team
+    html.push(team
         .filter(employee => employee.getRole() === "Intern")
         .map(intern => generateIntern(intern))
     );
-    return htmlIndex.join("");
+    return html.join("");
 }
 
 // We are exporting out an anonymous function

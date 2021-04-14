@@ -1,11 +1,11 @@
 const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
-const Engineer = require ("./lib/Engineer");
-const Intern = require ("./lib/Intern");
+const Engineer = require("./lib/Engineer");
+const Intern = require("./lib/Intern");
 const inquirer = require("inquirer");
-const { throwStatement } = require("@babel/types");
-const path = require ("path");
-const fs = require ("fs");
+// const { throwStatement, assertEnumDefaultedMember, tSIntrinsicKeyword } = require("@babel/types");
+const path = require("path");
+const fs = require("fs");
 const render = require("./src/page-template.js");
 // const { nextTick } = require("process");
 const OUTPUT_DIR = path.resolve(__dirname, "dist");
@@ -14,110 +14,117 @@ const teamMembers = [];
 // module.exports = pageContent;
 
 function runApp() {
-  inquirer
-    .prompt([
-      {
-        type: "input",
-        name: "managerName",
-        message: "What is the name of the employee??",
-      },
-      {
-        type: "input",
-        name: "managerId",
-        message: "What is their employee ID?",
-      },
-      {
-        type: "input",
-        name: "managerEmail",
-        message: "What is the manager's email?",
-      },
-      {
-        type: "input",
-        name: "managerOfficeNumber",
-        message: "What is the manager's office number?",
-      },
-    ])
-
-    .then((answers) => {
-      console.log(answers);
-      const manager = new Manager(
-        answers.managerName,
-        answers.managerId,
-        answers.managerEmail,
-        answers.managerOfficeNumber
-      );
-      teamMembers.push(Manager);
-      console.log(manager);
-      buildTeam();
-    });
-
-  function buildTeam() {
-    // Create the output directory if the output path doesn't exist
-    if (!fs.existsSync(OUTPUT_DIR)) {
-      fs.mkdirSync(OUTPUT_DIR)
-    }
-    fs.writeFileSync(outputPath, render(teamMembers), "utf-8");
+  function addMemberQuestions() {
+    inquirer
+      .prompt([
+        {
+          type: "list",
+          name: "add",
+          message: "Which type of team member would you like to add?",
+          choices: ["Manager", "Engineer", "Intern", "Finish building my team"],
+        },
+      ])
+      .then((data) => {
+        if (data.add === "Manager") {
+          managerQuestions();
+        }
+        if (data.add === "Engineer") {
+          engineerQuestions();
+        }
+        if (data.add === "Intern") {
+          internQuestions();
+        }
+        if (data.add === "Finish building my team") {
+          buildTeam();
+        }
+      });
   }
 
+  function managerQuestions() {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "managerName",
+          message: "What is the name of the employee??",
+        },
+        {
+          type: "input",
+          name: "managerId",
+          message: "What is their employee ID?",
+        },
+        {
+          type: "input",
+          name: "managerEmail",
+          message: "What is the manager's email?",
+        },
+        {
+          type: "input",
+          name: "managerOfficeNumber",
+          message: "What is the manager's office number?",
+        },
+      ])
 
-}
+      .then((answers) => {
+        console.log(answers);
+        const manager = new Manager(
+          answers.managerName,
+          answers.managerId,
+          answers.managerEmail,
+          answers.managerOfficeNumber
+        );
+        teamMembers.push(manager);
+        console.log(manager);
+        buildTeam();
+        addMemberQuestion();
+      });
+  }
+  function engineerQuestions() {
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "engineerName",
+          message: "What is the name of the engineer?",
+        },
+        {
+          type: "input",
+          name: "engineerId",
+          message: "What is their employee ID?",
+        },
+        {
+          type: "input",
+          name: "engineerEmail",
+          message: "What is the engineer's email?",
+        },
+        {
+          type: "input",
+          name: "gitHubUsername",
+          message: "What is the Engineer's GitHub username?",
+        },
+      ])
+
+      .then((answers) => {
+        console.log(answers);
+        const engineer = new Engineer(
+          answers.engineerName,
+          answers.engineerId,
+          answers.engineerEmail,
+          answers.gitHubUsername
+        );
+        teamMembers.push(Engineer);
+        console.log(engineer);
+        addMemberQuestion();
+        buildTeam();
+      });
+  }
+};
+function buildTeam() {
+  // Create the output directory if the output path doesn't exist
+  if (!fs.existsSync(OUTPUT_DIR)) {
+    fs.mkdirSync(OUTPUT_DIR);
+  }
+  fs.writeFileSync(outputPath, render(teamMembers), "utf-8");
+};
+
 runApp();
-
-
-
-
-//menu function to ask what employee you wanna add next
-//intern and engineer function sends them to add new employee
-
-
-
-
-// THIS IS WHERE YOUR MAIN LOGIC WILL LIE
-
-// function appMenu() {
-
-// function createManager () {
-//     console.log ("Please build your team");
-//     inquirer.prompt( [
-
-//     ])
-// }
-
-// }
-
-// You would first require ALL of the files and node packages needed
-// Engineer, Manager, Intern,
-
-// REQUIRE that page-template.js
-// We are receiving that anonymous function
-// Giving the name of pageTemplate
-// const pageTemplate = require('./src/page-template.js');
-// const { throwStatement } = require("@babel/types");
-// // And now, we can use that pageTemplate as a function, which can ACCEPT a parameter
-// pageTemplate(answers_from_inquirer_prompt);
-// INDEX FILES ARE CONSIDERED THE ENTRY POINT TO YOUR APPLICATION
-
-// IF THIS IS YOUR ENTRY POINT, YOU MUST DO YOUR INQUIRER HERE
-
-// THIS IS WHERE YOU DO YOUR FS WRITEFILE STUFF
-
-// THE DIST FOLDER IS WHERE THE OUTPUT HTML FILES WILL LAND
-
-// .then((response) => {
-//     console.log(response);
-
-//     const name = response.name;
-//     const id = response.id;
-//     const email = response.email;
-
-//     buildTeam()
-// });
-
-// console.log(response)
-
-// function
-
-
-// should have an array of employees
-// call render(array of employees)
-// write the contents to an html file.
