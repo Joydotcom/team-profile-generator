@@ -1,4 +1,4 @@
-# Team Profile Generator
+# TEAM PROFILE GENERATOR
 
 ## DESCRIPTION
 This app generates a team profile by following the prompts.
@@ -10,3 +10,6 @@ This app generates a team profile by following the prompts.
 
 ## DEMO
 [Click here to watch the demo!](https://drive.google.com/file/d/1Eg-b4rD4cjrIt_W7kuIWBko_ptO_QslF/view)
+
+## SCREENSHOT
+![Sample Team Profile ScreenShot](./images/team-profile-generator-photo.png "Team Profile Screenshot")
