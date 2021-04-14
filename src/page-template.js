@@ -1,6 +1,8 @@
+const Manager = require("../lib/Manager");
+
 // generate the HTML pages
 const generateTeam = team => {
-  
+
 const  generateManager = (manager) => {
     return `<div class="card employee-card">
     <div class="card-header">
@@ -50,22 +52,20 @@ const  generateIntern = (intern) => {
 }
 
 
-
-
-const html = [];
-    html.push(team
+const htmlIndex = [];
+    htmlIndex.push(team
         .filter(employee => employee.getRole() === "Manager")
         .map(manager => generateManager(manager))
     );
-    html.push(team
+    htmlIndex.push(team
         .filter(employee => employee.getRole() === "Engineer")
         .map(engineer => generateEngineer(engineer))
     );
-    html.push(team
+    htmlIndex.push(team
         .filter(employee => employee.getRole() === "Intern")
-        .map(engineer => generateEngineer(intern))
+        .map(intern => generateIntern(intern))
     );
-    return html.join("");
+    return htmlIndex.join("");
 }
 
 // We are exporting out an anonymous function
@@ -94,7 +94,7 @@ module.exports = team => {
         <div class="row">
             <div class="team-area col-12 d-flex justify-content-center">
                 YOUR METHOD GOES HERE THE CARDS OF MANAGER, INTERN, ENGINEER WILL BE. 
-                ${someFunction(team)}
+                ${generateTeam(team)}
             </div>
         </div>
     </div>

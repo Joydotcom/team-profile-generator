@@ -1,14 +1,16 @@
+const Employee = require("./lib/Employee");
 const Manager = require("./lib/Manager");
-// const Engineer = require ("./lib/Engineer");
-// const Intern = require ("./lib/Intern");
+const Engineer = require ("./lib/Engineer");
+const Intern = require ("./lib/Intern");
 const inquirer = require("inquirer");
 const { throwStatement } = require("@babel/types");
-// const path = require ("path");
-// const fs = require ("fs");
+const path = require ("path");
+const fs = require ("fs");
 const render = require("./src/page-template.js");
-// const OUTPUT_DIR = path.resolve(__dirname, "dist")
-// const outputPath = path.join(OUTPUT_DIR, "team.html");
-
+// const { nextTick } = require("process");
+const OUTPUT_DIR = path.resolve(__dirname, "dist");
+const outputPath = path.join(OUTPUT_DIR, "team.html");
+const teamMembers = [];
 // module.exports = pageContent;
 
 function runApp() {
@@ -31,10 +33,11 @@ function runApp() {
       },
       {
         type: "input",
-        name: "officeNumber",
+        name: "managerOfficeNumber",
         message: "What is the manager's office number?",
       },
     ])
+
     .then((answers) => {
       console.log(answers);
       const manager = new Manager(
@@ -43,17 +46,32 @@ function runApp() {
         answers.managerEmail,
         answers.managerOfficeNumber
       );
+      teamMembers.push(Manager);
       console.log(manager);
+      buildTeam();
     });
-  // function buildTeam() {
-  //   // Create the output directory if the output path doesn't exist
-  //   if (!fs.existsSync(OUTPUT_DIR)) {
-  //     fs.mkdirSync(OUTPUT_DIR)
-  //   }
-  //   fs.writeFileSync(outputPath, render(teamMembers), "utf-8");
-  // }
+
+  function buildTeam() {
+    // Create the output directory if the output path doesn't exist
+    if (!fs.existsSync(OUTPUT_DIR)) {
+      fs.mkdirSync(OUTPUT_DIR)
+    }
+    fs.writeFileSync(outputPath, render(teamMembers), "utf-8");
+  }
+
+
 }
 runApp();
+
+
+
+
+//menu function to ask what employee you wanna add next
+//intern and engineer function sends them to add new employee
+
+
+
+
 // THIS IS WHERE YOUR MAIN LOGIC WILL LIE
 
 // function appMenu() {
