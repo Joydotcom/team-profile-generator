@@ -1,7 +1,7 @@
 # TEAM PROFILE GENERATOR
 
 ## DESCRIPTION
-This app generates a team profile by following the prompts.
+This app dynamically generates a team profile by following the prompts for each team member.
 
 ## SAMPLE HTML
 [Click here for Sample Generated HTML file](./dist/sample.html)
@@ -9,7 +9,7 @@ This app generates a team profile by following the prompts.
 [Click here for the Repository Link](https://github.com/Joydotcom/team-profile-generator)
 
 ## DEMO
-[Click here to watch the demo!](https://drive.google.com/file/d/1Eg-b4rD4cjrIt_W7kuIWBko_ptO_QslF/view)
+[Click here to watch the demo!](https://drive.google.com/file/d/1ToqC73UJwFzJ7vPuRCGZSyEu1tAdW286/view)
 
 ## SCREENSHOT
-![Sample Team Profile ScreenShot](./images/team-profile-generator-photo.png "Team Profile Screenshot")
+![Sample Team Profile ScreenShot](./images/team-profile-generator-screenshot.png "Team Profile Screenshot")
